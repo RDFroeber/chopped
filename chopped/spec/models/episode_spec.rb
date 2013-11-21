@@ -27,8 +27,7 @@ describe Episode do
 
     context "has less than 3 rounds" do
       before do
-        ep.rounds.pop
-        # binding.pry
+        ep.rounds.first.delete
       end
 
       it "raises an error" do

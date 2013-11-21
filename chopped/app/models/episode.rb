@@ -4,7 +4,6 @@ class Episode < ActiveRecord::Base
   has_many :rounds
 
   after_save :check_rounds
-  # after_save :create_rounds,  if: Proc.new { |ep| self.rounds.count == 0 }
 
   def check_rounds
     if self.rounds.count == 1 || self.rounds.count == 2
@@ -18,6 +17,8 @@ class Episode < ActiveRecord::Base
     end
   end
 
+  private
+  
   def create_rounds
     self.rounds << Round.create(ingredient: "Paprika", episode: self)
     self.rounds << Round.create(ingredient: "Alligator", episode: self)
