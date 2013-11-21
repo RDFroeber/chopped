@@ -24,4 +24,10 @@ describe Episode do
     end
   end
 
+  describe "#produce_episode" do
+    it "hires a producer" do
+      expect(ep.produce_episode).to be_an_instance_of(Producer)
+    end
+  end
+
 end

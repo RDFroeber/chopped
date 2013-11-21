@@ -6,10 +6,11 @@ class Episode < ActiveRecord::Base
 
   after_save :produce_episode
 
-
   def produce_episode 
-    fabio = Producer.new(self)
-    fabio.research_judges
-    fabio.brainstorm_rounds
+    producer = Producer.new(self)
+    producer.research_judges
+    producer.brainstorm_rounds
+
+    producer
   end
 end
