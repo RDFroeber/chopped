@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131120220444) do
+ActiveRecord::Schema.define(version: 20131121012300) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20131120220444) do
     t.string  "name",             null: false
     t.string  "speciality"
     t.integer "episode_id",       null: false
-    t.integer "round_chopped_id", null: false
+    t.integer "round_chopped_id"
   end
 
   add_index "chefs", ["episode_id"], name: "index_chefs_on_episode_id", using: :btree
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20131120220444) do
 
   create_table "episodes", force: true do |t|
     t.string  "title",     null: false
-    t.integer "winner_id", null: false
+    t.integer "winner_id"
   end
 
   add_index "episodes", ["winner_id"], name: "index_episodes_on_winner_id", using: :btree
