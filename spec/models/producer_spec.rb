@@ -64,11 +64,45 @@ describe Producer do
 
       context "has greater than 3 judges" do
         before do
-          ep.judges << Judge.create(name: "Perry", episode: ep)
+          ep.judges << Judge.create(name: "McKenneth", episode: ep)
         end
 
         it "is invalid" do
           expect {prod.research_judges}.to raise_error("You cannot have more than three judges.")
+        end
+      end
+    end
+
+    describe "#find_chefs" do
+      before {ep.save}
+
+      it "is valid with 4 chefs" do
+        expect(ep.chefs.count).to eq(4)
+      end
+
+      context "already has 4 chefs" do
+        it "raises an error" do
+          expect {prod.find_chefs}.to raise_error("You already have four chefs.")
+        end
+      end
+
+      context "has less than 4 chefs" do
+        before do
+          ep.chefs.first.delete
+        end
+
+        it "raises an error" do
+          expect {prod.find_chefs}.to raise_error("Stop that. You must have four chefs.")
+        end
+      end
+
+      context "has greater than 4 chefs" do
+        before do
+          ep.chefs << Chef.create(name: "Perry", episode: ep)
+        end
+
+        it "is invalid" do
+          expect {prod.find_chefs}.to raise_error("You cannot have more than four chefs.")
         end
       end
     end

@@ -3,6 +3,7 @@ class Episode < ActiveRecord::Base
 
   has_many :rounds
   has_many :judges
+  has_many :chefs
 
   after_save :produce_episode
 
@@ -10,6 +11,7 @@ class Episode < ActiveRecord::Base
     producer = Producer.new(self)
     producer.research_judges
     producer.brainstorm_rounds
+    producer.find_chefs
 
     producer
   end

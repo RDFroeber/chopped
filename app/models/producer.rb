@@ -29,6 +29,18 @@ class Producer
     end
   end
 
+  def find_chefs
+    if ep.chefs.count != 0 && ep.chefs.count < 4
+      raise "Stop that. You must have four chefs."
+    elsif ep.chefs.count == 4 
+      raise "You already have four chefs."
+    elsif ep.chefs.count > 4   
+      raise "You cannot have more than four chefs."
+    else
+      hire_chefs
+    end
+  end
+
   private
   
   def script_rounds
@@ -41,5 +53,12 @@ class Producer
     ep.judges << Judge.create(name: "Alfredo", episode: ep)
     ep.judges << Judge.create(name: "Marinara", episode: ep)
     ep.judges << Judge.create(name: "Vodka", episode: ep)
+  end
+
+  def hire_chefs
+    ep.chefs << Chef.create(name: "Giada De Laurentiis", episode: ep)
+    ep.chefs << Chef.create(name: "Guy Fier", episode: ep)
+    ep.chefs << Chef.create(name: "Julia Child", episode: ep)
+    ep.chefs << Chef.create(name: "Ree Drummond", episode: ep)
   end
 end
