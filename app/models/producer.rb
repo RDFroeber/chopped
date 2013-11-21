@@ -57,7 +57,7 @@ class Producer
 
   def hire_chefs
     ep.chefs << Chef.create(name: "Giada De Laurentiis", episode: ep)
-    ep.chefs << Chef.create(name: "Guy Fier", episode: ep)
+    ep.chefs << Chef.create(name: "Guy Fieri", episode: ep)
     ep.chefs << Chef.create(name: "Julia Child", episode: ep)
     ep.chefs << Chef.create(name: "Ree Drummond", episode: ep)
   end
