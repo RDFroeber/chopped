@@ -19,13 +19,20 @@ describe Episode do
       expect(ep.rounds.count).to eq(3)
     end
 
+    context "already has 3 rounds" do
+      it "raises an error" do
+        expect {ep.check_rounds}.to raise_error("You already have three rounds.")
+      end
+    end
+
     context "has less than 3 rounds" do
       before do
         ep.rounds.pop
+        # binding.pry
       end
 
       it "raises an error" do
-        expect {ep.create_rounds}.to raise_error("Stop that.")
+        expect {ep.check_rounds}.to raise_error("Stop that. You must have three rounds.")
       end
     end
 
@@ -35,7 +42,7 @@ describe Episode do
       end
 
       it "is invalid" do
-        expect {ep.create_rounds}.to raise_error("Too many rounds.")
+        expect {ep.check_rounds}.to raise_error("You cannot have more than three rounds.")
       end
     end
   end
