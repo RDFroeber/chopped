@@ -19,10 +19,24 @@ describe Episode do
       expect(ep.rounds.count).to eq(3)
     end
 
-    it "is invalid with less than or greater than 3 rounds" do
-      # ep.rounds = nil
-      expect(ep.rounds.count).to_not be < (3)
-      expect(ep.rounds.count).to_not be > (3)
+    context "has less than 3 rounds" do
+      before do
+        ep.rounds.pop
+      end
+
+      it "raises an error" do
+        expect {ep.create_rounds}.to raise_error("Stop that.")
+      end
+    end
+
+    context "has greater than 3 rounds" do
+      before do
+        ep.rounds << Round.create(episode: ep)
+      end
+
+      it "is invalid" do
+        expect {ep.create_rounds}.to raise_error("Too many rounds.")
+      end
     end
   end
 
