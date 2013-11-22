@@ -3,4 +3,6 @@ class Chef < ActiveRecord::Base
 
   belongs_to :episode
   has_many :dishes
+
+  validates_associated :dishes
 end

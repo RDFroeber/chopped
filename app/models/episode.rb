@@ -5,6 +5,8 @@ class Episode < ActiveRecord::Base
   has_many :judges
   has_many :chefs
 
+  validates_associated :rounds, :judges, :chefs 
+
   after_save :produce_episode
 
   def produce_episode 
