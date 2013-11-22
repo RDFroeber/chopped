@@ -17,6 +17,19 @@ describe Round do
     expect(round.episode).to be_an_instance_of(Episode)
   end
 
+  context "has many dishes" do
+    let(:giada) {ep.chefs.first}
+
+    before do 
+      round.save
+      round.dishes << Dish.create(name: "Shredded Chicken and Tomatillo Tacos with Queso Fresco", chef: giada, round: round)
+    end
+
+    it "is valid" do
+      expect(round.dishes.first).to be_an_instance_of(Dish)
+    end
+  end
+
   describe "#ingredient" do
     it "returns its ingredient" do
       expect(round.ingredient).to eq("Cat nip")
